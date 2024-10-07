@@ -3,11 +3,11 @@
 function cleanSet(set, startString) {
   let str = '';
 
-  if (startString.length === 0 || String(set).slice(8, 11) !== 'Set') {
+  if (startString.length === 0 || !(set instanceof Set)) {
     return str;
   }
 
-  for (const word of Array(...set)) {
+  for (const word of set.keys()) {
     if (typeof word === 'string' && word.startsWith(startString)) {
       str = str.concat(word.slice(startString.length), '-');
     }
