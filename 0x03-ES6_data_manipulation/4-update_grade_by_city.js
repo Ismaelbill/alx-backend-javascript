@@ -6,10 +6,11 @@ function updateStudentGradeByCity(students, city, newGrades) {
     .map((val) => {
       newGrades
         .filter((value) => value.studentId === val.id)
-        .map((insideVal) => val.grade = insideVal.grade);
+        // eslint-disable-next-line no-return-assign
+        .map((insideVal) => (val.grade = insideVal.grade)); // eslint-disable-line no-param-reassign
 
       if (!val.grade) {
-        val.grade = 'N/A';
+        val.grade = 'N/A'; // eslint-disable-line no-param-reassign
       }
       return val;
     });
