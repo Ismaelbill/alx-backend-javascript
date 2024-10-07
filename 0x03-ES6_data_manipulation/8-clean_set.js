@@ -3,7 +3,7 @@
 function cleanSet(set, startString) {
   let str = '';
 
-  if (startString.length === 0) return str;
+  //   if (startString.length === 0) return str;
 
   for (const word of Array(...set)) {
     if (word.startsWith(startString)) {
