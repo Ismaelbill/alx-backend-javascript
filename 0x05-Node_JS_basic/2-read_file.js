@@ -6,20 +6,26 @@ function countStudents(path) {
       throw new Error('Cannot load the database');
     }
     const arr = data.split('\n').slice(1);
-    const cs = [];
-    const swe = [];
+    const obj = {};
+    let students = 0;
     for (const line of arr) {
-      const fl = line.split(',').slice(-1)[0];
-      const name = line.split(',').slice(0)[0];
-      if (fl && fl === 'CS') {
-        cs.push(name);
-      } else if (fl && fl === 'SWE') {
-        swe.push(name);
+      if (line) {
+        const fl = line.split(',').slice(-1)[0];
+        const name = line.split(',').slice(0)[0];
+        if (!obj[fl]) {
+          obj[fl] = '';
+        }
+        obj[fl] += `${name}, `;
+        students += 1;
       }
     }
-    console.log(`Number of students: ${cs.length + swe.length}`);
-    console.log(`Number of students in CS: ${cs.length}. List:`, cs.join(', '));
-    console.log(`Number of students in SWE: ${swe.length}. List:`, swe.join(', '));
+
+    console.log(`Number of students: ${students}`);
+    for (let i = 0; i < Object.keys(obj).length; i += 1) {
+      const key = Object.keys(obj)[i];
+      const val = String(Object.values(obj)[i]).slice(0, -2);
+      console.log(`Number of students in ${key}: ${val.split(', ').length}. List:`, val);
+    }
   });
 }
 
